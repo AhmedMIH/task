@@ -16,7 +16,7 @@ const ProductListScreen = ({ getData, data, loading, error }) => {
 
     const _renderItem = (item)=>(
         <View>
-            <Image  style={{height:100,width:100,backgroundColor:'red'}}  source={"https://i.dummyjson.com/data/products/9/1.jpg"}/>
+            {/* <Image  style={{height:100,width:100,backgroundColor:'red'}}  source={"https://i.dummyjson.com/data/products/9/1.jpg"}/> */}
             <Text>
                 {item.title}
             </Text>
