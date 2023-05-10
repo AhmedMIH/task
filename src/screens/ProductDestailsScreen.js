@@ -10,18 +10,38 @@ import {
   Image,
   Alert,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/header';
 import { useNavigation } from '@react-navigation/native';
 import ReviewCard from '../components/ReviewCard';
 
 const ProductDetailsScreen = (props) => {
   const item = props.route.params.item
+
   const navigation = useNavigation()
   console.log((item))
+  const [number, setNumber] = useState(1)
+  const [total, setTotal] = useState(item.price)
   const onPressBuyIt = () => {
-    Alert.alert('Confirmation')
+    Alert.alert(`Confirmation you buy ${number} pieces with total of $${calculateTotal()}`)
   }
+
+  const increaseNumber = () => {
+    setNumber(number + 1)
+  }
+
+  const decreaseNumber = () => {
+    if (number === 1) {
+
+    } else {
+      setNumber(number - 1)
+    }
+  }
+
+  const calculateTotal = () => {
+    return number * total
+  }
+
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
@@ -51,6 +71,23 @@ const ProductDetailsScreen = (props) => {
           <Text style={{ marginTop: 15 }}>
             {item.description}
           </Text>
+        </View>
+        <View style={[styles.row, { margin: 16 }]}>
+          <View style={{ flexDirection: "row", justifyContent: 'center', alignItems: 'center' }}>
+            <TouchableOpacity onPress={() => { decreaseNumber() }} style={{ marginHorizontal: 8 }}>
+              <Image style={{ height: 15, width: 15 }} source={require('../assets/minus.png')} />
+            </TouchableOpacity>
+            <Text style={{ fontSize: 20, fontWeight: '600', color: 'black' }}>
+              {number}
+            </Text>
+            <TouchableOpacity onPress={() => { increaseNumber() }} style={{ marginHorizontal: 8 }}>
+              <Image style={{ height: 15, width: 15 }} source={require('../assets/plus.png')} />
+            </TouchableOpacity>
+          </View>
+          <Text style={{ fontSize: 25, fontWeight: '600', color: 'black' }}>
+            $ {calculateTotal()}
+          </Text>
+
         </View>
         <TouchableOpacity onPress={() => { onPressBuyIt() }} style={styles.button}>
           <Text>Buy it</Text>
