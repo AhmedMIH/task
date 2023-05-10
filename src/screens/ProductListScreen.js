@@ -1,10 +1,8 @@
-import { View, Text, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect } from 'react'
-import store from '../store/store'
-import { connect, useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import { getData } from '../store/actions'
 import Spinner from 'react-native-loading-spinner-overlay/lib'
-import { strings } from '../locales'
 import { useTranslation } from 'react-i18next'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { changeLanguage } from 'i18next'
@@ -13,10 +11,6 @@ import Header from '../components/header'
 
 const ProductListScreen = ({ getData, data, loading, error }) => {
     const { t } = useTranslation();
-
-    const selectLang = () => {
-        i18n.lan
-    }
 
     useEffect(() => {
         getData()

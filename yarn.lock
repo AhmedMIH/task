@@ -5912,6 +5912,11 @@ react-native-codegen@^0.71.5:
     jscodeshift "^0.13.1"
     nullthrows "^1.1.1"
 
+react-native-easy-localization-and-rtl@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/react-native-easy-localization-and-rtl/-/react-native-easy-localization-and-rtl-1.1.0.tgz"
+  integrity sha512-15TO7Boc39prapK4IFspUho63GMpaUyDpRo559rCjdscsX4hckLf8cnOjY8BtJNnHRkC3+JXZ1azJxSggwneVA==
+
 react-native-gradle-plugin@^0.71.17:
   version "0.71.17"
   resolved "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.17.tgz"
@@ -5922,7 +5927,7 @@ react-native-loading-spinner-overlay@^3.0.1:
   resolved "https://registry.npmjs.org/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-3.0.1.tgz"
   integrity sha512-4GdR54HQnKg2HPSSisVizfTLuyhSh4splY9eb8mKiYF1Ihjn/5EmdNo5bN3S7uKPFRC3WLzIZIouX6G6fXfnjw==
 
-react-native-localization@^2.3.1:
+react-native-localization@^2.1.6, react-native-localization@^2.3.1:
   version "2.3.1"
   resolved "https://registry.npmjs.org/react-native-localization/-/react-native-localization-2.3.1.tgz"
   integrity sha512-jmD6GEAGmstCIZOsxZcxWJbbx364c9qtKy8kefLcHYfAc73+g+e8CB7TZEwpK4IZNXxCBAeQMBsXfFrTyJmpWQ==
