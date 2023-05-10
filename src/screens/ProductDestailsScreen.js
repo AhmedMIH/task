@@ -2,7 +2,8 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { connect } from 'react-redux'
 
-const ProductDetailsScreen = () => {
+const ProductDetailsScreen = (props) => {
+  const item = props.route.params.item
   return (
     <View>
       <Text>ProductDetailsScreen</Text>
@@ -11,9 +12,4 @@ const ProductDetailsScreen = () => {
 }
 
 
-export default connect(
-    {}
-,{
-
-}
-) (ProductDetailsScreen)
+export default ProductDetailsScreen

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, FlatList, Image } from 'react-native'
+import { View, Text, ScrollView, FlatList, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect } from 'react'
 import store from '../store/store'
 import { connect, useSelector } from 'react-redux'
@@ -6,34 +6,56 @@ import { getData } from '../store/actions'
 import Spinner from 'react-native-loading-spinner-overlay/lib'
 import { strings } from '../locales'
 import { useTranslation } from 'react-i18next'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { changeLanguage } from 'i18next'
+import ProductCard from '../components/productCard'
+import Header from '../components/header'
 
 const ProductListScreen = ({ getData, data, loading, error }) => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
+
+    const selectLang = () => {
+        i18n.lan
+    }
 
     useEffect(() => {
         getData()
     }, [])
 
-    const _renderItem = (item)=>(
-        <View>
-            {/* <Image  style={{height:100,width:100,backgroundColor:'red'}}  source={"https://i.dummyjson.com/data/products/9/1.jpg"}/> */}
-            <Text>
-                {item.title}
-            </Text>
-        </View>       
-    )
+    const _renderItem = ({ index, item }) => {
+        let imageHeight = 170;
+        if (index % 2 == 0) {
+            imageHeight = 120
+        }
+        return (
+            <ProductCard item={item} imageHeight={imageHeight} />
+        )
+    }
 
     return (
 
-        <View style={{flex:1}}>
-            <Text>{t('hello')}</Text>
+        <SafeAreaView style={{ flex: 1 }}>
+            <Header leftComponent={<Image source={require('../assets/left-arrow.png')} style={{ height: 20, width: 20 }} />}
+                rightComponent={
+                    <TouchableOpacity onPress={() => changeLanguage()} style={{ backgroundColor: 'white', alignItems: 'center', padding: 10, borderRadius: 15 }}>
+                        <Text >RTL</Text>
+                    </TouchableOpacity>
+                }
+                mainText={'Product List'}
+            />
+            <View style={{ backgroundColor: '#ff00a0', height: 70, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 15 }}>
+                <Text style={{ color: 'white', fontSize: 15 }}>25% discount</Text>
+                <Text style={{ color: 'white', fontSize: 12, paddingTop: 8 }}>Enjoy it now!</Text>
+            </View>
+
             <Spinner visible={loading} />
-            <FlatList style={{flex:1}}
+            <FlatList style={{ flex: 1 }}
+                numColumns={2}
                 data={data}
                 key={(item) => item.id}
-                renderItem={({item})=>_renderItem(item)}
+                renderItem={(item) => _renderItem(item)}
             />
-        </View>
+        </SafeAreaView>
     )
 }
 
