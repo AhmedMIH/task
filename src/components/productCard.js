@@ -8,7 +8,7 @@ const ProductCard = ({ item, imageHeight }) => {
     return (
         <TouchableOpacity onPress={() => navigation.navigate(constant.ProductDetailsScreen, { item: item })} style={{ margin: 15, flex: 1 }}>
             <Image resizeMode="cover" style={{ height: imageHeight, width: '100%', alignSelf: 'center' }} source={{ uri: item.thumbnail }} />
-            <View style={{ paddingHorizontal: 10, paddingVertical: 16, height: 70 }}>
+            <View style={{ paddingHorizontal: 10, paddingVertical: 16}}>
                 <Text style={{ color: '#7B4039' }}>
                     {item.brand}
                 </Text>
