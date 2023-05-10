@@ -3,14 +3,11 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { getData } from '../store/actions'
 import Spinner from 'react-native-loading-spinner-overlay/lib'
-import { useTranslation } from 'react-i18next'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { changeLanguage } from 'i18next'
 import ProductCard from '../components/productCard'
 import Header from '../components/header'
 
 const ProductListScreen = ({ getData, data, loading, error }) => {
-    const { t } = useTranslation();
 
     useEffect(() => {
         getData()

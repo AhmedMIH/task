@@ -8,15 +8,20 @@ import {
   ScrollView,
   FlatList,
   Image,
+  Alert,
 } from 'react-native';
 import React from 'react';
 import Header from '../components/header';
 import { useNavigation } from '@react-navigation/native';
+import ReviewCard from '../components/ReviewCard';
 
 const ProductDetailsScreen = (props) => {
   const item = props.route.params.item
   const navigation = useNavigation()
   console.log((item))
+  const onPressBuyIt = () => {
+    Alert.alert('Confirmation')
+  }
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
@@ -47,7 +52,7 @@ const ProductDetailsScreen = (props) => {
             {item.description}
           </Text>
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={() => { onPressBuyIt() }} style={styles.button}>
           <Text>Buy it</Text>
         </TouchableOpacity>
         <View style={styles.review}>
@@ -64,21 +69,7 @@ const ProductDetailsScreen = (props) => {
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => {
             return (
-              <View style={styles.reviews}>
-                <View style={styles.row}>
-                  <View>
-                    <Text> {item.header} </Text>
-                    <Text style={{ marginTop: 10 }}> {item.stars} </Text>
-                  </View>
-                  <View style={{ alignItems: 'flex-end' }}>
-                    <Text> {item.name} </Text>
-                    <Text style={{ marginTop: 10, color: 'gray' }}>
-                      {item.date}
-                    </Text>
-                  </View>
-                </View>
-                <Text style={{ marginTop: 20 }}>{item.description}</Text>
-              </View>
+              <ReviewCard item={item} />
             );
           }}
         />
@@ -118,12 +109,6 @@ const styles = StyleSheet.create({
   review: {
     margin: 20,
     flexDirection: 'row',
-  },
-  reviews: {
-    marginHorizontal: 20,
-    padding: 15,
-    width: 300,
-    backgroundColor: 'white',
   },
   stars: {
     marginLeft: 10,
