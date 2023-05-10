@@ -63,10 +63,10 @@ const ProductDetailsScreen = (props) => {
         <View style={styles.description}>
           <View style={styles.row}>
             <View>
-              <Text>{item.title}</Text>
-              <Text>BY {item.brand}</Text>
+              <Text style={{fontSize:18,color:'black'}}>{item.title}</Text>
+              <Text style={{fontSize:14,color:'#8DB700'}}>BY {item.brand}</Text>
             </View>
-            <Text style={{ fontSize: 25 }}>$ 499</Text>
+            <Text style={{ fontSize: 25 }}>$ {item.price}</Text>
           </View>
           <Text style={{ marginTop: 15 }}>
             {item.description}
