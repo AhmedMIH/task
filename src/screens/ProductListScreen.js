@@ -29,9 +29,10 @@ const ProductListScreen = ({ getData, data, loading, error }) => {
     return (
 
         <SafeAreaView style={{ flex: 1 }}>
-            <Header leftComponent={<Image source={require('../assets/left-arrow.png')} style={{ height: 20, width: 20 }} />}
+            <Header BGColor={'#7B4039'}
+             leftComponent={<Image source={require('../assets/left-arrow.png')} style={{ height: 20, width: 20 }} />}
                 rightComponent={
-                    <TouchableOpacity onPress={() => changeLanguage()} style={{ backgroundColor: 'white', alignItems: 'center', padding: 10, borderRadius: 15 }}>
+                    <TouchableOpacity onPress={() => {}} style={{ backgroundColor: 'white', alignItems: 'center', padding: 10, borderRadius: 15 }}>
                         <Text >RTL</Text>
                     </TouchableOpacity>
                 }

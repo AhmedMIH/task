@@ -7,44 +7,54 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
+  Image,
 } from 'react-native';
 import React from 'react';
+import Header from '../components/header';
+import { useNavigation } from '@react-navigation/native';
 
-const ProductDetailsScreen = () => {
+const ProductDetailsScreen = (props) => {
+  const item = props.route.params.item
+  const navigation = useNavigation()
+  console.log((item))
   return (
     <ScrollView>
       <SafeAreaView style={styles.container}>
-        <Text>ProductDetailsScreen</Text>
+        <Header BGColor={'#00e277'}
+          rightComponent={
+            <TouchableOpacity onPress={() => { navigation.goBack() }}>
+              <Image source={require('../assets/exit.png')} style={{ height: 20, width: 20 }} />
+            </TouchableOpacity>
+          }
+          mainText={'Product Details'}
+        />
         <ImageBackground
           style={styles.image}
-          resizeMode="cover"
+          resizeMode="stretch"
           source={{
-            uri: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
+            uri: item.thumbnail,
           }}
         />
         <View style={styles.description}>
           <View style={styles.row}>
             <View>
-              <Text>Sofabio</Text>
-              <Text>BY UXDIVERS</Text>
+              <Text>{item.title}</Text>
+              <Text>BY {item.brand}</Text>
             </View>
-            <Text style={{fontSize:25}}>$ 499</Text>
+            <Text style={{ fontSize: 25 }}>$ 499</Text>
           </View>
-          <Text style={{marginTop: 15}}>
-            Duis aliquip ex quis dolor. Ea eu duis pariatur ex elit culpa
-            occaecat Lorem nostrud et sunt. Ipsum commodo esse veniam est aute
-            ad nisi occaecat commodo qui dolore id officia. Eiusmod est non eu
-            est Lorem minim dolor commodo excepteur deserunt.
+          <Text style={{ marginTop: 15 }}>
+            {item.description}
           </Text>
         </View>
         <TouchableOpacity style={styles.button}>
           <Text>Buy it</Text>
         </TouchableOpacity>
         <View style={styles.review}>
-          <Text style={{color: 'green', fontSize: 30}}>3.9</Text>
+          <Text style={{ color: 'green', fontSize: 30 }}>{item.rating.toFixed(1)}</Text>
           <View style={styles.stars}>
             <Text>Stars</Text>
-            <Text>Based on 7 customers reviews</Text>
+            <Text>Based on customers reviews</Text>
           </View>
         </View>
         <FlatList
@@ -52,23 +62,22 @@ const ProductDetailsScreen = () => {
           keyExtractor={item => item.id}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          renderItem={({item}) => {
-            console.log(item);
+          renderItem={({ item }) => {
             return (
               <View style={styles.reviews}>
                 <View style={styles.row}>
                   <View>
                     <Text> {item.header} </Text>
-                    <Text style={{marginTop: 10}}> {item.stars} </Text>
+                    <Text style={{ marginTop: 10 }}> {item.stars} </Text>
                   </View>
-                  <View style={{alignItems: 'flex-end'}}>
+                  <View style={{ alignItems: 'flex-end' }}>
                     <Text> {item.name} </Text>
-                    <Text style={{marginTop: 10, color: 'gray'}}>
+                    <Text style={{ marginTop: 10, color: 'gray' }}>
                       {item.date}
                     </Text>
                   </View>
                 </View>
-                <Text style={{marginTop: 20}}>{item.description}</Text>
+                <Text style={{ marginTop: 20 }}>{item.description}</Text>
               </View>
             );
           }}
