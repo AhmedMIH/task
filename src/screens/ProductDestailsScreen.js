@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 import Header from '../components/header';
 import { useNavigation } from '@react-navigation/native';
 import ReviewCard from '../components/ReviewCard';
+import Stars from '../components/Stars';
 
 const ProductDetailsScreen = (props) => {
   const item = props.route.params.item
@@ -95,7 +96,7 @@ const ProductDetailsScreen = (props) => {
         <View style={styles.review}>
           <Text style={{ color: 'green', fontSize: 30 }}>{item.rating.toFixed(1)}</Text>
           <View style={styles.stars}>
-            <Text>Stars</Text>
+            <Stars stars={item.rating}/>
             <Text>Based on customers reviews</Text>
           </View>
         </View>

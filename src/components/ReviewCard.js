@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
+import Stars from './Stars';
 
 const ReviewCard = ({ item }) => {
     return (
         <View style={styles.reviews}>
             <View style={styles.row}>
                 <View>
-                    <Text> {item.header} </Text>
-                    <Text style={{ marginTop: 10 }}> {item.stars} </Text>
+                    <Text style={{ fontWeight: '500', fontSize: 20, color: 'black' }}> {item.header} </Text>
+                    <Stars stars={item.stars} />
                 </View>
                 <View style={{ alignItems: 'flex-end' }}>
                     <Text> {item.name} </Text>
